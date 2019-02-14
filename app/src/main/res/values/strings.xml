@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Login</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="sin_up">Registrate</string>
+    <string name="not_account">¿aún no tienes cuenta?</string>
+</resources>
