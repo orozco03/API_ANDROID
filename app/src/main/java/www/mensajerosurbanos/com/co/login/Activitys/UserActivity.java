@@ -11,16 +11,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.mensajerosurbanos.com.co.login.Models.CardModelo;
 import www.mensajerosurbanos.com.co.login.R;
 import www.mensajerosurbanos.com.co.login.RecyclerViewAdapter;
 
 public class UserActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+
     private RecyclerViewAdapter adapterEmail;
-    private TextView text_emailR;
+
     String email;
+
+    @BindView(R.id.recicler)
+    RecyclerView recyclerView;
+
+    @BindView(R.id.text_emailR)
+    TextView text_emailR;
 
     ArrayList<CardModelo> lista;
 
@@ -28,10 +36,9 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        ButterKnife.bind(this);
 
-        text_emailR = findViewById(R.id.text_emailR);
 
-        recyclerView = findViewById(R.id.recicler);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         lista = new ArrayList<>();

@@ -10,25 +10,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.mensajerosurbanos.com.co.login.AdminSQLiteOpenHelper;
 import www.mensajerosurbanos.com.co.login.R;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    private EditText  edit_email, edit_pass;
-    private Button btn_singReg;
+
     private Context context;
+
+    @BindView(R.id.edit_emailReg)
+    EditText edit_email;
+
+    @BindView(R.id.edit_passReg)
+    EditText edit_pass;
+
+    @BindView(R.id.btn_singReg)
+    Button btn_singReg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        ButterKnife.bind(this);
 
-
-        edit_email = findViewById(R.id.edit_emailReg);
-        edit_pass = findViewById(R.id.edit_passReg);
-
-        btn_singReg = findViewById(R.id.btn_singReg);
         context = this;
         final String email = edit_email.getText().toString();
 

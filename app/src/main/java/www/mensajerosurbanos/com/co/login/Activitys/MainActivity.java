@@ -13,15 +13,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.mensajerosurbanos.com.co.login.AdminSQLiteOpenHelper;
 import www.mensajerosurbanos.com.co.login.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn_sinup, btn_login;
-    private EditText edit_email, edit_password;
+
+
     private Cursor fila;
     private Context context;
+
+    @BindView(R.id.edit_user)
+     EditText edit_email;
+
+    @BindView(R.id.edit_password)
+    EditText edit_password;
+
+    @BindView(R.id.btn_login)
+    Button btn_login;
+
+
 
     AdminSQLiteOpenHelper admin;
     SQLiteDatabase BD;
@@ -30,12 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        edit_email = findViewById(R.id.edit_user);
-        edit_password = findViewById(R.id.edit_password);
-
-        btn_login = findViewById(R.id.btn_login);
-        btn_sinup = findViewById(R.id.btn_sinup);
+        ButterKnife.bind(this);
 
         context = this;
 
