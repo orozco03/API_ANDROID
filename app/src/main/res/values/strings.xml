@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">Login</string>
+    <string name="app_sing">Registro</string>
     <string name="user">Usuario</string>
     <string name="password">Contraseña</string>
     <string name="login">Iniciar sesión</string>
     <string name="sin_up">Registrate</string>
-    <string name="not_account">¿aún no tienes cuenta?</string>
+    <string name="not_account">¿aún no tienes una cuenta?</string>
+    <string name="name">Nombre</string>
+    <string name="email">Correo</string>
+    <string name="not_usu">Usuario no registrado</string>
+    <string name="no_camp">Hay campos vacios</string>
+    <string name="exit">Registro exitoso</string>
+    <string name="usu_incorrecto">Usuario incorrecto</string>
+    <string name="Bien">Bienvenido</string>
 </resources>
