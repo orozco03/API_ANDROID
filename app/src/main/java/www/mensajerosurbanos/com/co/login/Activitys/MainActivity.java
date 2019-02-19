@@ -1,10 +1,8 @@
 package www.mensajerosurbanos.com.co.login.Activitys;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +17,6 @@ import www.mensajerosurbanos.com.co.login.AdminSQLiteOpenHelper;
 import www.mensajerosurbanos.com.co.login.R;
 
 public class MainActivity extends AppCompatActivity {
-
 
 
     private Cursor fila;
@@ -39,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     AdminSQLiteOpenHelper admin;
     SQLiteDatabase BD;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,38 +48,12 @@ public class MainActivity extends AppCompatActivity {
         admin = new AdminSQLiteOpenHelper(context);
         BD = admin.getReadableDatabase();
 
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
             }
         });
-
-
-        //btn_login.setOnClickListener(new View.OnClickListener() {
-         //   @Override
-         //   public void onClick(View v) {
-
-         //       edit_email = findViewById(R.id.edit_user);
-         //       edit_password = findViewById(R.id.edit_password);
-
-         //       try {
-           //         Cursor cursor =admin.login(edit_email.getText().toString(), edit_password.getText().toString());
-
-             //       if (cursor.getCount()>0){
-               //         Intent intent = new Intent(getApplicationContext(),UserActivity.class);
-                 //       startActivity(intent);
-                   // }else{
-                     //  Toast.makeText(getApplicationContext(),"usuario incorrecto",Toast.LENGTH_LONG).show();
-                   // }
-                //}catch (SQLException e){
-                  //  e.printStackTrace();
-                //}
-
-            //}
-        //});
-
 
     }
 
@@ -110,4 +82,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this,RegistroActivity.class);
         startActivity(intent);
     }
+
 }

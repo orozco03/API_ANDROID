@@ -1,32 +1,51 @@
 package www.mensajerosurbanos.com.co.login;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.OkHttp3Downloader;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import www.mensajerosurbanos.com.co.login.Models.Artists;
 import www.mensajerosurbanos.com.co.login.Models.CardModelo;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView email;
+    private List<Artists> dataList;
+    private Context context;
+
+    public RecyclerViewAdapter(Context context, List<Artists> dataList) {
+        this.context = context;
+        this.dataList = dataList;
+
+    }
+        public static class ViewHolder extends RecyclerView.ViewHolder{
+        private TextView name, url;
+        private ImageView img;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            email = itemView.findViewById(R.id.text_email);
+            name = itemView.findViewById(R.id.text_name);
+            img = itemView.findViewById(R.id.img);
+            url = itemView.findViewById(R.id.text_url);
         }
     }
 
-    public List<CardModelo> lista;
+    ArrayList<Artists> list = new ArrayList<>();
 
-    public RecyclerViewAdapter(List<CardModelo> lista){
-        this.lista = lista;
+
+    public RecyclerViewAdapter(List<Artists> lista){
+        this.dataList = lista;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
@@ -36,10 +55,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public void onBindViewHolder(ViewHolder holder, int position){
-        holder.email.setText(lista.get(position).getEmail());
+        holder.name.setText(dataList.get(position).getName());
+        holder.url.setText(dataList.get(position).getUrl());
+
+        Picasso.Builder builder = new Picasso.Builder(context);
+        builder.downloader(new OkHttp3Downloader(context));
+        builder.build().load(dataList.get(position).getUrl())
+                .placeholder((R.drawable.ic_launcher_background))
+                .error(R.drawable.ic_launcher_background)
+                .into(holder.img);
     }
 
     public int getItemCount(){
-        return lista.size();
+        return dataList.size();
     }
 }
