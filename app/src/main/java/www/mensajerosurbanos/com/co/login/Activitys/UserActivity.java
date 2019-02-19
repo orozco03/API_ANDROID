@@ -1,10 +1,14 @@
 package www.mensajerosurbanos.com.co.login.Activitys;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +30,6 @@ import www.mensajerosurbanos.com.co.login.RecyclerViewAdapter;
 
 public class UserActivity extends AppCompatActivity {
 
-
-    //private RecyclerViewAdapter adapterEmail;
     String email;
 
     @BindView(R.id.recicler)
@@ -35,6 +37,9 @@ public class UserActivity extends AppCompatActivity {
 
     @BindView(R.id.text_emailR)
     TextView text_emailR;
+
+    //@BindView(R.id.text_url)
+    //TextView text_url;
 
     ArrayList<Artists> lista;
 
@@ -84,10 +89,17 @@ public class UserActivity extends AppCompatActivity {
         });
     }
 
+    //public void Navigation(View view){
+    //    Intent i = new Intent(this, Main2Activity.class);
+    //    i.putExtra("web", text_url.getText().toString());
+    //    startActivity(i);
+    //}
+
         private void generateDataList (Topartists photoList){
             Collections.addAll(lista, photoList.getArtists().getArtists());
             adapter.notifyDataSetChanged();
         }
+
 }
 
 

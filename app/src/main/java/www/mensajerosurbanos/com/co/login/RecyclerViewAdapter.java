@@ -17,6 +17,7 @@ import java.util.List;
 
 import www.mensajerosurbanos.com.co.login.Models.Artists;
 import www.mensajerosurbanos.com.co.login.Models.CardModelo;
+import www.mensajerosurbanos.com.co.login.Models.Image;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 

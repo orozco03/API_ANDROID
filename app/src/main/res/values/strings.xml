@@ -13,4 +13,6 @@
     <string name="exit">Registro exitoso</string>
     <string name="usu_incorrecto">Usuario incorrecto</string>
     <string name="Bien">Bienvenido</string>
+
+    <string name="btn">Volver</string>
 </resources>
