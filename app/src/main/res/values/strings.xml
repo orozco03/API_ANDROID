@@ -15,4 +15,5 @@
     <string name="Bien">Bienvenido</string>
 
     <string name="btn">Volver</string>
+    <string name="btn_salir">Cerrar</string>
 </resources>

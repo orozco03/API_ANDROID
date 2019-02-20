@@ -7,6 +7,15 @@
     tools:context=".Activitys.UserActivity"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/btn_salir"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_salir"
+        android:onClick="ClosedBTN"
+        android:layout_gravity="right"
+        android:layout_margin="10dp"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,9 +39,6 @@
         android:id="@+id/recicler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:padding="8dp"/>
 
 </LinearLayout>

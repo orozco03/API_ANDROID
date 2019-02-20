@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import www.mensajerosurbanos.com.co.login.R;
 
 public class Main2Activity extends AppCompatActivity {
@@ -18,10 +19,11 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        ButterKnife.bind(this);
 
         String URL = getIntent().getStringExtra("web");
         web.setWebViewClient(new WebViewClient());
-        web.loadUrl("http://" + URL);
+        web.loadUrl(URL);
     }
 
     public void Closed (View view){

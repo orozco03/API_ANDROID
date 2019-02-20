@@ -17,6 +17,7 @@ import java.util.Collections;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,8 +39,8 @@ public class UserActivity extends AppCompatActivity {
     @BindView(R.id.text_emailR)
     TextView text_emailR;
 
-    //@BindView(R.id.text_url)
-    //TextView text_url;
+    @BindView(R.id.btn_salir)
+     Button btn_salir;
 
     ArrayList<Artists> lista;
 
@@ -89,16 +90,15 @@ public class UserActivity extends AppCompatActivity {
         });
     }
 
-    //public void Navigation(View view){
-    //    Intent i = new Intent(this, Main2Activity.class);
-    //    i.putExtra("web", text_url.getText().toString());
-    //    startActivity(i);
-    //}
 
         private void generateDataList (Topartists photoList){
             Collections.addAll(lista, photoList.getArtists().getArtists());
             adapter.notifyDataSetChanged();
         }
+
+    public void ClosedBTN (View view){
+        finish();
+    }
 
 }
 
