@@ -7,6 +7,21 @@ public class ListArtistas {
     @SerializedName("artist")
     Artists [] artists;
 
+    @SerializedName("@attr")
+    Pagination pagination;
+
+    public Pagination getPagination() {
+        return pagination;
+    }
+
+    public ListArtistas(Pagination pagination) {
+        this.pagination = pagination;
+    }
+
+    public void setPagination(Pagination pagination) {
+        this.pagination = pagination;
+    }
+
     public Artists[] getArtists() {
         return artists;
     }

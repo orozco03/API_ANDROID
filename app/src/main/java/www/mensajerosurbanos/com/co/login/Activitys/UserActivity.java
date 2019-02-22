@@ -1,13 +1,12 @@
 package www.mensajerosurbanos.com.co.login.Activitys;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,14 +16,13 @@ import java.util.Collections;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import www.mensajerosurbanos.com.co.login.Models.Api_Service;
 import www.mensajerosurbanos.com.co.login.Models.Artists;
-import www.mensajerosurbanos.com.co.login.Models.ListArtistas;
 import www.mensajerosurbanos.com.co.login.Models.RetrofitClientInstance;
+import www.mensajerosurbanos.com.co.login.Models.ScrollListener;
 import www.mensajerosurbanos.com.co.login.Models.Topartists;
 import www.mensajerosurbanos.com.co.login.R;
 import www.mensajerosurbanos.com.co.login.RecyclerViewAdapter;
@@ -47,17 +45,19 @@ public class UserActivity extends AppCompatActivity {
     private RecyclerViewAdapter adapter;
     ProgressDialog progressDialog;
 
+    private ScrollListener scrollListener;
+
+    private GridLayoutManager gridLayoutManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
 
-
         lista = new ArrayList<>();
 
-        //adapterEmail = new RecyclerViewAdapter(lista);
-        //recyclerView.setAdapter(adapterEmail);
 
         progressDialog = new ProgressDialog(UserActivity.this);
         progressDialog.setMessage("Cargando....");
@@ -65,13 +65,37 @@ public class UserActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recicler);
         adapter = new RecyclerViewAdapter(this, lista);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        gridLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
 
 
         email = getIntent().getStringExtra("email");
         text_emailR.setText("Email: " + email);
 
+        scroll();
+        getData();
+
+
+    }
+
+
+    public void scroll(){
+        scrollListener = new ScrollListener(gridLayoutManager) {
+
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                Log.e("Scroll", "cargar datos....");
+
+            }
+        };
+
+        recyclerView.addOnScrollListener(scrollListener);
+    }
+
+
+    public void getData(){
         Api_Service service = RetrofitClientInstance.getRetrofitInstance().create(Api_Service.class);
         Call<Topartists> call = service.getAllArtists();
 
@@ -91,10 +115,14 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
-        private void generateDataList (Topartists photoList){
+
+
+
+
+    private void generateDataList (Topartists photoList){
             Collections.addAll(lista, photoList.getArtists().getArtists());
             adapter.notifyDataSetChanged();
-        }
+    }
 
     public void ClosedBTN (View view){
         finish();

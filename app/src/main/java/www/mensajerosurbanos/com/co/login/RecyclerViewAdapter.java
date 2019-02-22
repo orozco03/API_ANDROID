@@ -20,6 +20,8 @@ import www.mensajerosurbanos.com.co.login.Activitys.Main2Activity;
 import www.mensajerosurbanos.com.co.login.Models.Artists;
 import www.mensajerosurbanos.com.co.login.Models.CardModelo;
 import www.mensajerosurbanos.com.co.login.Models.Image;
+import www.mensajerosurbanos.com.co.login.Models.ScrollListener;
+import www.mensajerosurbanos.com.co.login.Models.Topartists;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -46,10 +48,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     ArrayList<Artists> list = new ArrayList<>();
 
-
-    public RecyclerViewAdapter(List<Artists> lista){
-        this.dataList = lista;
-    }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_view,parent,false);
