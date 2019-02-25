@@ -62,7 +62,7 @@ public class RegistroActivity extends AppCompatActivity {
                 }else {
                     if(!validarUsuario()){
                         admin.agregar(edit_email.getText().toString(), edit_pass.getText().toString());
-                        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("email", email);
                         edit_email.setText("");
                         edit_pass.setText("");

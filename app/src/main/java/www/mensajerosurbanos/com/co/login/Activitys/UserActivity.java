@@ -1,6 +1,7 @@
 package www.mensajerosurbanos.com.co.login.Activitys;
 
 import android.app.ProgressDialog;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -53,6 +54,7 @@ public class UserActivity extends AppCompatActivity {
     private boolean loading = true;
     private int PagActual = 0;
     private int PagAnterior = 0;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class UserActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         lista = new ArrayList<>();
-
+        handler = new Handler();
 
         progressDialog = new ProgressDialog(UserActivity.this);
         progressDialog.setMessage("Cargando....");
@@ -86,26 +88,34 @@ public class UserActivity extends AppCompatActivity {
 
 
     public void scroll(){
-        scrollListener = new ScrollListener(gridLayoutManager) {
 
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+            public void run() {
+                scrollListener = new ScrollListener(gridLayoutManager) {
 
-                totalItemsCount = pagination.getTotalPages();
+                    @Override
+                    public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
 
-                PagActual = pagination.getPage();
-                PagAnterior = pagination.getPerPage();
+                        totalItemsCount = pagination.getTotalPages();
 
-                if (!loading && (pagination.getPage() <= totalItemsCount)){
+                        PagActual = pagination.getPage();
+                        PagAnterior = pagination.getPerPage();
 
-                    PagActual ++;
-                    getData(PagActual);
-                }
+                        if (!loading && (pagination.getPage() <= totalItemsCount)){
+
+                            PagActual ++;
+                            getData(PagActual);
+                        }
+
+                    }
+                };
+
+                recyclerView.addOnScrollListener(scrollListener);
 
             }
-        };
+        }, 10000);
 
-        recyclerView.addOnScrollListener(scrollListener);
     }
 
 

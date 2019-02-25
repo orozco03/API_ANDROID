@@ -19,6 +19,5 @@
         android:layout_gravity="center"
         android:textSize="20sp"
         android:onClick="Closed"
-        android:background="@color/colorVerde"
-        android:layout_margin="5dp"/>
+        android:background="@color/colorVerde"/>
 </LinearLayout>
