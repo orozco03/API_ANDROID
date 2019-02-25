@@ -2,7 +2,7 @@ package www.mensajerosurbanos.com.co.login.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ListArtistas {
+public class InfoTop {
 
     @SerializedName("artist")
     Artists [] artists;
@@ -14,7 +14,7 @@ public class ListArtistas {
         return pagination;
     }
 
-    public ListArtistas(Pagination pagination) {
+    public InfoTop(Pagination pagination) {
         this.pagination = pagination;
     }
 

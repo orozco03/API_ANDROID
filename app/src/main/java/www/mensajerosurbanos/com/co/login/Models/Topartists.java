@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName;
 public class Topartists {
 
     @SerializedName("topartists")
-    ListArtistas artists;
+    InfoTop infoTop;
 
-    public ListArtistas getArtists() {
-        return artists;
+    public InfoTop getInfoTop() {
+        return infoTop;
     }
 
-    public void setArtists(ListArtistas artists) {
-        this.artists = artists;
+    public void setInfoTop(InfoTop infoTop) {
+        this.infoTop = infoTop;
     }
 }

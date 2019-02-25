@@ -10,7 +10,7 @@
     <string name="email">Correo</string>
     <string name="not_usu">Usuario no registrado</string>
     <string name="no_camp">Hay campos vacios</string>
-    <string name="exit">Registro exitoso</string>
+    <string name="exit">Registro exitoso, ahora inicia sesión</string>
     <string name="usu_incorrecto">Usuario incorrecto</string>
     <string name="Bien">Bienvenido</string>
 

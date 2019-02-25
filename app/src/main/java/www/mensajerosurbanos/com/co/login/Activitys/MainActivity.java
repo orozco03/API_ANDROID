@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     Button btn_login;
 
 
-
     AdminSQLiteOpenHelper admin;
     SQLiteDatabase BD;
 
@@ -70,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this,UserActivity.class);
                 intent.putExtra("email", email);
+                edit_email.setText("");
+                edit_password.setText("");
                 startActivity(intent);
             }
         }

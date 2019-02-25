@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,6 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import www.mensajerosurbanos.com.co.login.Models.Api_Service;
 import www.mensajerosurbanos.com.co.login.Models.Artists;
+import www.mensajerosurbanos.com.co.login.Models.Pagination;
 import www.mensajerosurbanos.com.co.login.Models.RetrofitClientInstance;
 import www.mensajerosurbanos.com.co.login.Models.ScrollListener;
 import www.mensajerosurbanos.com.co.login.Models.Topartists;
@@ -41,6 +41,7 @@ public class UserActivity extends AppCompatActivity {
      Button btn_salir;
 
     ArrayList<Artists> lista;
+     private Pagination pagination;
 
     private RecyclerViewAdapter adapter;
     ProgressDialog progressDialog;
@@ -49,6 +50,9 @@ public class UserActivity extends AppCompatActivity {
 
     private GridLayoutManager gridLayoutManager;
 
+    private boolean loading = true;
+    private int PagActual = 0;
+    private int PagAnterior = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +78,9 @@ public class UserActivity extends AppCompatActivity {
         email = getIntent().getStringExtra("email");
         text_emailR.setText("Email: " + email);
 
-        scroll();
-        getData();
 
+        getData(1);
+        scroll();
 
     }
 
@@ -86,7 +90,17 @@ public class UserActivity extends AppCompatActivity {
 
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                Log.e("Scroll", "cargar datos....");
+
+                totalItemsCount = pagination.getTotalPages();
+
+                PagActual = pagination.getPage();
+                PagAnterior = pagination.getPerPage();
+
+                if (!loading && (pagination.getPage() <= totalItemsCount)){
+
+                    PagActual ++;
+                    getData(PagActual);
+                }
 
             }
         };
@@ -95,9 +109,10 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
-    public void getData(){
+    public void getData(int pagina){
+        loading = true;
         Api_Service service = RetrofitClientInstance.getRetrofitInstance().create(Api_Service.class);
-        Call<Topartists> call = service.getAllArtists();
+        Call<Topartists> call = service.getAllArtists(pagina);
 
         call.enqueue(new Callback<Topartists>() {
             @Override
@@ -115,13 +130,11 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-    private void generateDataList (Topartists photoList){
-            Collections.addAll(lista, photoList.getArtists().getArtists());
+    private void generateDataList (Topartists topartists){
+            Collections.addAll(lista, topartists.getInfoTop().getArtists());
             adapter.notifyDataSetChanged();
+            pagination = topartists.getInfoTop().getPagination();
+            loading = false;
     }
 
     public void ClosedBTN (View view){

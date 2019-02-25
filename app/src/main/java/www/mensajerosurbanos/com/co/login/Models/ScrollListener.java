@@ -34,7 +34,7 @@ public abstract class ScrollListener extends RecyclerView.OnScrollListener {
 
     public int getLastVisibleItem(int[] lastVisibleItemPositions) {
         int maxSize = 0;
-        for (int i = 0; i < lastVisibleItemPositions.length; i++) {
+        for (int i  : lastVisibleItemPositions) {
             if (i == 0) {
                 maxSize = lastVisibleItemPositions[i];
             }
